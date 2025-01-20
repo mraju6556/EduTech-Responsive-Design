@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech - Online Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #f5f6fa;
+            --dark-gray: #2d3436;
+            --footer-bg: #2c3e50;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://img.freepik.com/free-vector/gradient-international-day-education-background_23-2151120677.jpg?t=st=1737356121~exp=1737359721~hmac=2252000762909bbf375c2a0d1b410f414964c477c86a08d6bcd5611d866bdaf1&w=740') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Featured Courses Section */
+        .featured-courses {
+            padding: 4rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: #ecf0f1;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+
+        .newsletter-form button {
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">EduTech</a>
+            <div class="nav-links">
+                <a href="courses.html">Courses</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="progress.html">Progress</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Future with Online Learning</h1>
+            <p>Access world-class education from anywhere. Start your learning journey today.</p>
+            <a href="courses.html" class="cta-button">Explore Courses</a>
+        </div>
+    </section>
+
+    <section class="featured-courses">
+        <h2 class="section-title">Featured Courses</h2>
+        <div class="courses-grid">
+            <!-- Course cards will be dynamically populated by JavaScript -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About EduTech</h3>
+                <p>EduTech is a leading online learning platform dedicated to providing high-quality education to students worldwide. Our mission is to make learning accessible and engaging for everyone.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="courses.html">Browse Courses</a></li>
+                    <li><a href="lessons.html">Current Lessons</a></li>
+                    <li><a href="progress.html">Track Progress</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@edutech.com</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>Address: 123 Learning Street<br>Education City, ED 12345</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for updates and special offers.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 EduTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample course data
+        const featuredCourses = [
+            {
+                title: "Web Development Fundamentals",
+                description: "Learn HTML, CSS, and JavaScript basics",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo80WqCWGbJTUGhcIaumEcGCm166LeBGZe4Q&s",
+                link: "courses.html#web-dev"
+            },
+            {
+                title: "Python Programming",
+                description: "Master Python programming from scratch",
+                image: "https://loudbench.com/wp-content/uploads/2023/02/Python-logo-1024x576.png",
+                link: "courses.html#python"
+            },
+            {
+                title: "Data Science Essentials",
+                description: "Introduction to data analysis and visualization",
+                image: "https://media.licdn.com/dms/image/v2/D4D12AQG7ZelYo66BIQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1691161877357?e=2147483647&v=beta&t=DwOWQT_HKrq9N1ew_gkBKsG7snjT5aMG5d3CSnAYnhA",
+                link: "courses.html#data-science"
+            }
+        ];
+
+        // Function to create course cards
+        function createCourseCard(course) {
+            return `
+                <div class="course-card">
+                    <img src="${course.image}" alt="${course.title}" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-description">${course.description}</p>
+                        <a href="${course.link}" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Populate featured courses
+        document.addEventListener('DOMContentLoaded', () => {
+            const coursesGrid = document.querySelector('.courses-grid');
+            coursesGrid.innerHTML = featuredCourses.map(course => createCourseCard(course)).join('');
+
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletter-form');
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing! Confirmation email sent to ${email}`);
+                e.target.reset();
+            });
+        });
+    </script>
+</body>
+</html>
